@@ -8,6 +8,8 @@ for i in range(0, 14):
         line = line.strip() 
         if len(line) > 0: 
             node1, node2, weight = re.split('\|', line)
-            G.add_edge(node1, node2, weight=int(weight))
+            weight = int(weight)
+            if weight > 100:
+                G.add_edge(node1, node2, weight=weight)
 file.close()
 nx.write_gexf(G, 'graph.gexf')
